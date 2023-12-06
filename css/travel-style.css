@@ -30,6 +30,10 @@ button{
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
+button:hover{
+    background-color: rgb(253, 224, 224);
+}
+
 .location-border{
     justify-content: space-around;
     text-align: center;
