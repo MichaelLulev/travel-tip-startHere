@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- CSS -->
+     <link rel="stylesheet" href="css/styles.css" />
+    
+    <title>TravelTip</title>
+</head>
+<body>
+    <header class="main-header">
+        <h1 class="logo">TravelTip</h1>
+        <div class="search">
+            <input type="text" placeholder="Enter Location">
+            <button onclick="onGoLocation(event)">GO</button>
+            <button onclick="onDeleteLocation(event)">Delete</button>
+            <button>My Location</button>
+        </div>
+    </header>
+    <main class="main-layout flex">
+        <div class="locations-container">
+          <div class="locations-wrapper">
+            <details class="add-location flex space-between">
+              <summary><i class="fa-solid fa-plus"></i> Add new Location</summary>
+              <form class="add-loc">
+                <input
+                  class="input loc-name"
+                  type="text"
+                  id="name"
+                  placeholder="Location Name"
+                />
+                <button class="btn">Add</button>
+              </form>
+            </details>
+  
+            <div class="locations">
+
+            </div>
+          </div>
+          <div class="spinner hide"></div>
+          <div class="wrapper-map">
+            <div class="map-container">
+              <div style="width: 500px; height: 500px;"  id="map">
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer>
+
+          <p>Iris & daniel</p>
+        </footer>
+    
+        <script type="module" src="js/app.controller.js"></script>
+      </body>
+    </html>
+    
