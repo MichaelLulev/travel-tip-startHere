@@ -11,7 +11,7 @@ export const mapService = {
 
 let gMap
 let gCurrLoc = { lat: 32.0749831, lng: 34.9120554 }
-const API_KEY = 'AIzaSyDqqArTOcIbYzJV_JU1V_jot4zc8TmhUeE'
+const API_KEY = 'AIzaSyCqQUX8qiZm_5g5pqj3MzPhiYfPOLffp4U'
 
 function getCurrLoc() {
   return gCurrLoc
@@ -56,7 +56,7 @@ function panTo(lat, lng) {
 function _connectGoogleApi() {
   if (window.google) return Promise.resolve()
   let elGoogleApi = document.createElement('script')
-  elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=`
+  elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
   elGoogleApi.async = true
   document.body.append(elGoogleApi)
 
