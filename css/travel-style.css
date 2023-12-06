@@ -1,0 +1,32 @@
+body{
+    background-color: rgb(202, 202, 202);
+}
+
+main{
+    align-items: center;
+    flex-direction: column;
+}
+.flex{
+    display: flex;
+}
+
+.rows{
+    flex-direction: column;
+}
+
+.location-border{
+    justify-content: space-around;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    font-size: 20px;
+    margin: 10px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+#map {
+    padding: 0;
+    width: 400px;
+    height: 400px;
+}
