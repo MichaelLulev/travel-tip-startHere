@@ -4,7 +4,7 @@ import { mapService } from './services/map.service.js'
 window.onload = onInit
 window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
-window.onGetLocs = onGetLocs
+window.onGetLocs = onGetLocations
 window.onGetUserPos = onGetUserPos
 
 function onInit() {
@@ -28,8 +28,8 @@ function onAddMarker() {
     mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
 }
 
-function onGetLocs() {
-    locService.getLocs()
+function onGetLocations() {
+    locService.getLocations()
         .then(locs => {
             console.log('Locations:', locs)
             document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
