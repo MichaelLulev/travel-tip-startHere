@@ -1,95 +1,52 @@
-import { utilService } from './util.service.js'
-
 export const mapService = {
-  initMap,
-  addMarker,
-  panTo,
-  getCurrLoc,
-  getUserPos,
-  getAddressCoords,
+    initMap,
+    addMarker,
+    panTo
 }
 
-let gMap
-let gCurrLoc = { lat: 32.0749831, lng: 34.9120554 }
-const API_KEY = 'AIzaSyCqQUX8qiZm_5g5pqj3MzPhiYfPOLffp4U'
 
-function getCurrLoc() {
-  return gCurrLoc
-}
+// Var that is used throughout this Module (not global)
+var gMap
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-  return _connectGoogleApi().then(() => {
-    gMap = new google.maps.Map(document.querySelector('#map'), {
-      center: { lat, lng },
-      zoom: 15,
-    })
-    console.log('Map!', gMap)
-    gMap.addListener('click', ev => {
-      const lat = ev.latLng.lat()
-      const lng = ev.latLng.lng()
-
-      addMarker(ev.latLng)
-      panTo(lat, lng)
-
-      gCurrLoc = { lat, lng }
-
-      utilService.setQueryStringParams(lat, lng)
-    })
-  })
+    console.log('InitMap')
+    return _connectGoogleApi()
+        .then(() => {
+            console.log('google available')
+            gMap = new google.maps.Map(
+                document.querySelector('#map'), {
+                center: { lat, lng },
+                zoom: 15
+            })
+            console.log('Map!', gMap)
+        })
 }
 
 function addMarker(loc) {
-  let marker = new google.maps.Marker({
-    position: loc,
-    map: gMap,
-    title: 'Hello World!',
-  })
-  return marker
+    var marker = new google.maps.Marker({
+        position: loc,
+        map: gMap,
+        title: 'Hello World!'
+    })
+    return marker
 }
 
 function panTo(lat, lng) {
-  let laLatLng = new google.maps.LatLng(lat, lng)
-  gMap.panTo(laLatLng)
-  gCurrLoc = { lat, lng }
+    var laLatLng = new google.maps.LatLng(lat, lng)
+    gMap.panTo(laLatLng)
 }
+
 
 function _connectGoogleApi() {
-  if (window.google) return Promise.resolve()
-  let elGoogleApi = document.createElement('script')
-  elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
-  elGoogleApi.async = true
-  document.body.append(elGoogleApi)
+    if (window.google) return Promise.resolve()
+    const API_KEY = '' //TODO: Enter your API Key
+    var elGoogleApi = document.createElement('script')
+    elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
+    elGoogleApi.async = true
+    document.body.append(elGoogleApi)
 
-  return new Promise((resolve, reject) => {
-    elGoogleApi.onload = resolve
-    elGoogleApi.onerror = () => reject('Google script failed to load')
-  })
-}
-
-function getUserPos() {
-  if (!navigator.geolocation) return
-  return new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject)
-  ).then(res => {
-    return {
-      lat: res.coords.latitude,
-      lng: res.coords.longitude,
-    }
-  })
-}
-
-function getAddressCoords(address) {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&language=en&key=${API_KEY}`
-  return fetch(url)
-    .then(res => res.json())
-    .then(res => res.results[0])
-    .then(result => {
-      return {
-        pos: {
-          lat: result.geometry.location.lat,
-          lng: result.geometry.location.lng,
-        },
-        locName: result['address_components'][0]['long_name'],
-      }
+    return new Promise((resolve, reject) => {
+        elGoogleApi.onload = resolve
+        elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
