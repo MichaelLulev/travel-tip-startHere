@@ -30,6 +30,10 @@ button{
     font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
+button:active{
+    background-color: rgb(254, 170, 170);
+}
+
 button:hover{
     background-color: rgb(253, 224, 224);
 }
