@@ -2,6 +2,13 @@ body{
     background-color: rgb(202, 202, 202);
 }
 
+header{
+    border: 4px solid black;
+}
+header > h1{
+    border: 1px solid black;
+}
+
 main{
     align-items: center;
     flex-direction: column;
@@ -12,6 +19,14 @@ main{
 
 .rows{
     flex-direction: column;
+}
+
+button{
+    margin: 3px;
+    padding: 4px;
+    border: 2px solid black;
+    background: whitesmoke;
+    font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 .location-border{

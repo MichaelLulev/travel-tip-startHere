@@ -8,18 +8,28 @@
 
 </head>
 <body>
-    <header>
+    <header class="flex">
         <h1>TravelTip Starter</h1>
     </header>
 
     <main class="main-content flex">
-        <div id="map"></div>
         <div class="btns">
             <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
             <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
             <button onclick="onGetLocations()" class="btn-get-locs">Get Locations</button>
+            <button onclick="onMyPlace()">My-place</button>
             <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+
+            <div class="actinos">Actions:
+                <button onclick="onGo()">Go</button>
+                <button onclick="onDelete()">Delete</button>
+                <button onclick="copyLink()">Copy-Link</button>
+                
+            </div>
         </div>
+
+        <div id="map"></div>
+
         <div class="flex">
             <p class="location-border flex rows">You are at: <span class="user-pos">X-Y-Z</span></p>
             <p class="location-border flex rows">Locations: <span class="locs">X-Y-Z</span>
