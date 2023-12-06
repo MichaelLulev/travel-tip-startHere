@@ -1,17 +1,17 @@
 export const locService = {
-    getLocs
+    getLocations,
 }
 
 
-const locs = [
+const locations = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
 
-function getLocs() {
+function getLocations() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve(locs)
+            resolve(locations)
         }, 2000)
     })
 }
