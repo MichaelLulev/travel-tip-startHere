@@ -4,7 +4,7 @@ import { mapService } from './services/map.service.js'
 window.onload = onInit
 window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
-window.onGetLocs = onGetLocations
+window.onGetLocations = onGetLocations
 window.onGetUserPos = onGetUserPos
 
 function onInit() {
