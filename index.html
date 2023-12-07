@@ -24,9 +24,13 @@
                 <button onclick="onGo()">Go</button>
                 <button onclick="onDelete()">Delete</button>
                 <button onclick="copyLink()">Copy-Link</button>
-                <label for="name">Location:</label>
-                <input oninput="onTypeLocation()" type="text" id="name" name="name" required minlength="2" maxlength="12" size="13" />
-                <button onclick="onButtonClick()">Submit</button>
+                <form onsubmit="onGoLocation(event)">
+                    <label>
+                        Location:
+                        <input class="location-adress" type="text"/>
+                    </label>
+                    <button>Go</button>
+                </form>
 
 
             </div>

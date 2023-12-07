@@ -1,9 +1,10 @@
-import { api } from "../api-key.js"
+import { apiKey } from "../api-key.js"
 
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getGeocode,
 }
 
 // Var that is used throughout this Module (not global)
@@ -43,12 +44,28 @@ function panTo(lat, lng) {
     gMap.panTo(latLng)
 }
 
+function getGeocode(address) {
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey.GEOCODE}`
+    fetch(apiUrl)
+    .then(res => res = res.json())
+    .then(res => {
+        if (! res.results) {
+            console.error(res)
+            return
+        }
+        const formattedAdress = res.results[0].formatted_address
+        const lat = res.results[0].geometry.location.lat
+        const lng = res.results[0].geometry.location.lng
+        console.log(formattedAdress, lat, lng)
+        panTo(lat, lng)
+    })
+}
+
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = api.KEY
     var elGoogleApi = document.createElement('script')
-    elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
+    elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey.MAP}`
     elGoogleApi.async = true
     document.body.append(elGoogleApi)
 

@@ -6,6 +6,7 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocations = onGetLocations
 window.onGetUserPos = onGetUserPos
+window.onGoLocation = onGoLocation
 
 function onInit() {
     mapService.initMap()
@@ -47,6 +48,14 @@ function onGetUserPos() {
             console.log('err!!!', err)
         })
 }
+
+function onGoLocation(ev) {
+    ev.preventDefault()
+    const elLocationAdress = document.querySelector('.location-adress')
+    const locationAdress = elLocationAdress.value
+    mapService.getGeocode(locationAdress)
+}
+
 function onPanTo() {
     console.log('Panning the Map')
     mapService.panTo(35.6895, 139.6917)
